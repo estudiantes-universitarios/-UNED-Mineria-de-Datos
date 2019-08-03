@@ -1,0 +1,224 @@
+% ====================================================
+% ================= PREAMBULO ========================
+% ====================================================
+\documentclass{article}
+    \textheight = 21cm  % largo texto impreso
+    \textwidth = 18cm   % ancho texto impreso
+    \topmargin = -2cm   % margen superior 3-2=1cm
+    \oddsidemargin = -2cm   % margen izquierdo 4.5-2=2.5cm
+        % Sangría=0mm
+    \parindent = 0mm
+        % Otros paquetes
+    \usepackage{amsmath,amssymb,amsfonts,latexsym}
+    \usepackage[T1]{fontenc}        % fuentes adecuadas para salida
+    \usepackage[latin1]{inputenc}   % acentos,etc., desde el teclado
+            % Paquetes para estilos
+    %\usepackage{xparse}
+    %\usepackage{tikz,lipsum,lmodern}
+    \usepackage[most]{tcolorbox}
+    
+\title{Mineria de Datos}
+\author{Estudiante UNED }
+\date{August 2019}
+
+
+% -----------Fin Preambulo ------------
+
+% ====================================================
+% ================= CUERPO ===========================
+% ====================================================
+\begin{document}
+
+\maketitle
+
+\begin {tcolorbox}
+    % Especificaciones
+    [enhanced,attach boxed title to top center={yshift=-3mm,yshifttext=-1mm}, colback=blue!5!white,colframe=blue!75!black,colbacktitle=red!80!black, title=4.10,fonttitle=\bfseries, boxed title style={size=small,colframe=red!50!black} ]
+  
+  % Cuerpo caja
+Consider the classification model of Exercise 4.9 and now suppose that the class-conditional densities are given by Gaussian distributions with a shared covariance matrix, so that 
+        $$ p\left(\phi_n|C_k\right)=\mathcal{N}\left(\phi_n|\mu,\Sigma\right) $$
+Show that the maximum likelihood solution for the mean of the Gaussian distribution for class Ck is given by
+        $$ \mu_k\ =\frac{1}{N_k}\ \sum_{n=1}^{N}{\ t_{n,k}\phi_n} $$
+which represents the mean of those feature vectors assigned to class Ck. Similarly, show that the maximum likelihood solution for the shared covariance matrix is given by
+        $$ \Sigma=\sum_{k=1}^{K}{\frac{N_k}{N}\ S_k} $$
+where
+        $$ S_k=\frac{1}{N_k}\sum_{n=1}^{N}{\ t_{n,k}\left(\phi_n-\mu_k\right)\left(\phi_n-\mu_k\right)^T} $$
+Thus $\Sigma$ is given by a weighted average of the covariances of the data associated with each class, in which the weighting coefficients are given by the prior probabilities of the classes.
+\end{tcolorbox}
+
+$ \displaystyle
+   p\left(\left\{\phi_n ,t_n\right\}|\left\{\pi_k\right\}\right)=
+   \prod_{n=1}^{N}{
+        \prod_{k=1}^{K}{
+            \left\{p\left(\phi_n|C_k\right) p\left(C_k\right)\right\}^{t_{n,k}} 
+        }
+    }
+$
+\begin{center}
+    $ \displaystyle p\left(C_k\right)=\pi_k $ \\
+    $ \displaystyle p\left(\phi_n|C_k\right)=\mathcal{N}\left(\phi_n|\mu,\Sigma\right) $
+\end{center}
+
+$ \displaystyle
+    \ln{p\left(\left\{\phi_n,t_n\right\}|\left\{\pi_k\right\}\right)}=\ln{
+        \prod_{n=1}^{N}{
+            \prod_{k=1}^{K}{
+                \left\{\mathcal{N}\left(\phi_n|\mu,\Sigma\right)\ \pi_k\right\}^{t_{n,k}}
+                }\
+            }
+        }
+$
+\begin{center}
+    $ \displaystyle \ln{\prod_{m=1}^{M}a_m}=\ln{\sum_{m=1}^{M}a_m} $ \\
+    $ \displaystyle \ln{a^n}=n\ln{a} $
+\end{center}
+
+$ \displaystyle
+    \ln{
+        p\left(\left\{\phi_n,t_n\right\}|\left\{\pi_k\right\}\right)
+    }=
+    \sum_{n=1}^{N}{
+        \sum_{k=1}^{K}{t_{n,k}{
+            \ln{
+                \left\{\mathcal{N}\left(\phi_n|\mu,\Sigma\right)\ \pi_k\right\}}
+            }
+        }
+    }
+$
+\begin{center}
+    $\displaystyle \ln{\mathcal{N}\left(\phi_n|\mu,\Sigma\right)}=\ln{\left(2\pi\left|\Sigma\right|\right)^{-1/2}}-\frac{1}{2}\left(\phi_n-\mu_k\right)^T\Sigma^{-1}\left(\phi_n-\mu_k\right) $
+\end{center}
+
+$\displaystyle
+    \ln{
+        p\left(\left\{\phi_n,t_n\right\}|\left\{\pi_k\right\}\right)
+    }=\sum_{n=1}^{N}{
+        \sum_{k=1}^{K}{t_{n,k}{
+            \left\{-\frac{1}{2}\ln{\left(\left|\Sigma\right|\right)}-\frac{1}{2}\left(\phi_n-\mu_k\right)^T\Sigma^{-1}\left(\phi_n-\mu_k\right)-\frac{1}{2}\ln{\left(2\pi\right)}+\ln{\pi_k}\right\}}
+        }
+    }
+$
+\begin{center}
+    $\displaystyle \frac{\partial}{\partial\mu_m}\left\{\sum_{m=1}^{m}{F\left(x_m\right)\ }\right\}=\frac{\partial F\left(x_m\right)}{\partial\mu_m}$
+\end{center}
+
+$ \displaystyle
+    \frac{\partial}{\partial\mu_k}\left\{\ln{p\left(\left\{\phi_n,t_n\right\}|\left\{\pi_k\right\}\right)}\right\}=\frac{\partial}{\partial\mu_k}\left\{\sum_{n=1}^{N}{t_{n,k}\left\{-\frac{1}{2}\left(\phi_n-\mu_k\right)^T\Sigma^{-1}\left(\phi_n-\mu_k\right)\right\}}\right\}=0
+$
+
+\begin{center}
+    $ \displaystyle \frac{\partial}{\partial s}\left(x-s\right)^TW\left(x-s\right)=2W\left(x-s\right) $
+\end{center}
+
+$ \displaystyle
+    \sum_{n=1}^{N}{t_{n,k}\ \left\{-\Sigma^{-1}\left(\phi_n-\mu_k\right)\right\}}=0\ \ \ \Longrightarrow\ \ \ -\sum_{n=1}^{N}{\ t_{n,k}\Sigma^{-1}\phi_n-t_{n,k}\Sigma^{-1}\mu_k}=0
+$
+
+\begin{center}
+    $\displaystyle  \sum{a-b}=\sum a-\sum b $
+\end{center}
+
+$ \displaystyle
+    \sum_{n=1}^{N}{\ t_{n,k}\Sigma^{-1}\mu_k}-\sum_{n=1}^{N}{\ t_{n,k}\Sigma^{-1}\phi_n}=0\ \ \ \Longrightarrow\ \ \ \sum_{n=1}^{N}{\ t_{n,k}\Sigma^{-1}\mu_k}=\sum_{n=1}^{N}{\ t_{n,k}\Sigma^{-1}\phi_n}
+$
+
+\begin{center}
+    $ \displaystyle \Sigma \cdot \Sigma^{-1}=I $
+\end{center}
+
+$ \displaystyle
+    \Sigma^{-1}\mu_k\sum_{n=1}^{N}{\ t_{n,k}}=\Sigma^{-1}\sum_{n=1}^{N}{\ t_{n,k}\phi_n}\ \Longrightarrow\ \Sigma\left\{\Sigma^{-1}\mu_k\sum_{n=1}^{N}{\ t_{n,k}}\right\}=\Sigma\left\{\Sigma^{-1}\sum_{n=1}^{N}{\ t_{n,k}\phi_n}\right\}\ \ 
+$
+
+\begin{center}
+    $ \displaystyle N_k=\sum_{n=1}^{N}{\ t_{n,k}} $
+\end{center}
+
+$ \displaystyle
+    \mu_k\ N_k=\sum_{n=1}^{N}{\ t_{n,k}\phi_n}\ \ \ \Longrightarrow\ \ \ \mu_k\ =\frac{1}{N_k}\ \sum_{n=1}^{N}{\ t_{n,k}\phi_n}\ 
+$
+
+\begin{center}
+    $  $
+\end{center}
+
+$ \displaystyle
+    \frac{\partial}{\partial\Sigma}\left\{\ln{p\left(\left\{\phi_n,t_n\right\}|\left\{\pi_k\right\}\right)}\right\}=\frac{\partial}{\partial\Sigma}\left\{\sum_{n=1}^{N}\sum_{k=1}^{K}{t_{n,k}\ \left\{-\frac{1}{2}\ln{\left(\left|\Sigma\right|\right)}-\frac{1}{2}\left(\phi_n-\mu_k\right)^T\Sigma^{-1}\left(\phi_n-\mu_k\right)\right\}}\right\}
+$
+
+\begin{center}
+    $\displaystyle \sum{a+b}=\sum a+\sum b $ \\
+    $\displaystyle D\left(a+b\right)=Da+Db $
+\end{center}
+
+$ \displaystyle
+    -\frac{1}{2}\frac{\partial}{\partial\Sigma}\left\{\sum_{n=1}^{N}\sum_{k=1}^{K}{t_{n,k}\ \ln{\left(\left|\Sigma\right|\right)}}\right\}-\frac{1}{2}\frac{\partial}{\partial\Sigma}\left\{\sum_{n=1}^{N}\sum_{k=1}^{K}{t_{n,k}\ \left(\phi_n-\mu_k\right)^T\Sigma^{-1}\left(\phi_n-\mu_k\right)}\right\}=0
+$
+
+\begin{center}
+    $ \displaystyle S_k=\frac{1}{N_k}\sum_{n=1}^{N}{\ t_{n,k}\left(\phi_n-\mu_k\right)\left(\phi_n-\mu_k\right)^T} $
+\end{center}
+
+$ \displaystyle
+    -\frac{1}{2}\left\{\sum_{n=1}^{N}\sum_{k=1}^{K}{t_{n,k}\frac{\partial \ln {\left(\left|\mathrm{\Sigma}\right|\right)}}{\partial\Sigma}\ }\right\}=\frac{1}{2}
+    \left\{
+        \sum_{k=1}^{K}{
+            \frac{\partial}{\partial\Sigma}{
+                \underbrace{\sum_{n=1}^{N}{t_{n,k}\left(\phi_n-\mu_k\right)^T\mathrm{\Sigma}^{-1}\left(\phi_n-\mu_k\right)\ }}_{N_k\ Tr\left(\mathrm{\Sigma}^{-1}S_k\right)}}
+        }
+    \right\}
+$
+
+\begin{center}
+    $\displaystyle \frac{\partial l\ n{\left(\left|A\right|\right)}}{\partial\Sigma}=\left(A^{-1}\right)^T $
+\end{center}
+
+$ \displaystyle
+    -\sum_{n=1}^{N}{
+        \sum_{k=1}^{K}{
+            t_{n,k}{\underbrace{\left(\mathrm{\Sigma}^{-1}\right)^T}_{\mathrm{\Sigma}^{-1}}}\ 
+        }
+    }=\sum_{k=1}^{K}{
+        \frac{\partial\left\{N_k\ Tr\left(\mathrm{\Sigma}^{-1}S_k\right)\right\}}{\partial\Sigma}
+    }
+$
+
+\begin{center}
+    $\displaystyle \frac{\partial\left\{\ Tr\left(AX^{-1}B\right)\right\}}{\partial X}=\left(X^{-1}B\ A\ X^{-1}\right)^T $
+\end{center}
+
+$\displaystyle
+    -\sum_{n=1}^{N}\sum_{k=1}^{K}{t_{n,k}\mathrm{\Sigma}^{-1}}=-\sum_{k=1}^{K}N_k\left(\mathrm{\Sigma}^{-1}S_k\mathrm{\Sigma}^{-1}\right)^T
+$
+
+\begin{center}
+    $\displaystyle \left(A\ B\ C\right)^T=C^TB^TA^T $
+    $\displaystyle N=\sum_{n=1}^{N}\sum_{k=1}^{K}{t_{n,k}\ } $
+\end{center}
+
+$\displaystyle
+    \mathrm{\Sigma}^{-1}\underbrace{
+    \sum_{n=1}^{N}{
+        \sum_{k=1}^{K}{
+            t_{n,k}\ 
+        }
+    }
+    }_N
+     =\sum_{k=1}^{K}{
+        N_k\left(\mathrm{\Sigma}^{-1}S_k\mathrm{\Sigma}^{-1}\right)^T
+     }
+$
+
+\begin{center}
+    Multiplicando por $\Sigma$ tanto por la izquierda como por la derecha ambos miembros de la ecuaci\'on
+\end{center}
+
+$\displaystyle
+    \mathrm{\Sigma}\left(\mathrm{\Sigma}^{-1}N\right)\mathrm{\Sigma}=\mathrm{\Sigma}\left(\sum_{k=1}^{K}N_k\mathrm{\Sigma}^{-1}S_k\mathrm{\Sigma}^{-1}\right)\mathrm{\Sigma}
+$
+$\displaystyle
+    N\ \mathrm{\Sigma}=\sum_{k=1}^{K}{N_kS_k}\Longrightarrow\ \ \ \Sigma=\sum_{k=1}^{K}{\frac{N_k}{N}\ S_k}
+$
+\end{document}
+% -----------Fin Cuerpo ------------
