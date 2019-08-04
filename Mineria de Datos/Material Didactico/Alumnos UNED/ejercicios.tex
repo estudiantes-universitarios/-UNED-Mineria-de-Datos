@@ -31,6 +31,59 @@
 
 \maketitle
 
+
+\begin {tcolorbox}
+    % Especificaciones
+    [enhanced,attach boxed title to top center={yshift=-3mm,yshifttext=-1mm}, colback=blue!5!white,colframe=blue!75!black,colbacktitle=red!80!black, title=4.8,fonttitle=\bfseries, boxed title style={size=small,colframe=red!50!black} ]
+  
+  % Cuerpo caja
+Using (4.57) and (4.58), derive the result (4.65) for the posterior class probability in the two-class generative model with Gaussian densities, and verify the results (4.66) and (4.67) for the parameters w and w0.
+\end{tcolorbox}
+
+$ \displaystyle
+    p\left(c_1|x\right)=\frac{p\left(x|c_1\right)p\left(c_1\right)}{p\left(x|c_1\right)p\left(c_1\right)+p\left(x|c_2\right)p\left(c_2\right)}=\frac{1}{1+\exp{\left(-a\right)}}=\sigma\left(a\right)
+$  \\
+$ \displaystyle
+    a=\ln{
+        \frac{p\left(x|c_1\right)p\left(c_1\right)}{p\left(x|c_2\right)p\left(c_2\right)}
+    }
+$\\
+$ \displaystyle
+    p\left(c_1|x\right)=\sigma\left(w^Tx+w_0\right)
+$\\
+$ \displaystyle
+    w=\Sigma^{-1}\left(\mu_1-\mu_2\right)
+$\\
+$\displaystyle
+    w_0=-\frac{1}{2}\mu_1^T \Sigma^{-1}\mu_1+\frac{1}{2}\mu_2^T \Sigma^{-1}\mu_2+\ln{\frac{c_1}{c_2}}
+$\\
+
+Entonces \\
+$ \displaystyle
+        \ln{
+            \frac{p\left(x|c_1\right)p\left(c_1\right)}{p\left(x|c_2\right)p\left(c_2\right)}
+        }=w^Tx+w_0
+$\\
+Teniendo en cuenta que: \\
+$ \displaystyle
+    p\left(x|c_k\right)=\frac{1}{\left(2\pi\right)^{D/2}}\frac{1}{\left|\Sigma\right|^{1/2}}\exp{
+     \left\{-\frac{1}{2}\left(x-\mu_k\right)^T\Sigma^{-1}\left(x-\mu_k\right)\right\}
+    }
+$\\
+$\displaystyle
+    \ln{\frac{p\left(x|c_1\right)p\left(c_1\right)}{p\left(x|c_2\right)p\left(c_2\right)}}=\\
+    \ln{\left\{\frac{\frac{1}{\left(2\pi\right)^{D/2}} \frac{1}{\left|\Sigma\right|^{1/2}} \exp{\left\{-\frac{1}{2}\left(x-\mu_1\right)^T\Sigma^{-1}\left(x-\mu_1\right)\right\}}}{\frac{1}{\left(2\pi\right)^{D/2}}\ \frac{1}{\left|\Sigma\right|^{1/2}}\ \exp{\left\{-\frac{1}{2}\left(x-\mu_2\right)^T\Sigma^{-1}\left(x-\mu_2\right)\right\}}}\right\}+\ln{\frac{p\left(c_1\right)}{p\left(c_2\right)}}}=\\
+    \ln{\left\{\exp{\left\{-\frac{1}{2}\left(x-\mu_1\right)^T\Sigma^{-1}\left(x-\mu_1\right)+\frac{1}{2}\left(x-\mu_2\right)^T\Sigma^{-1}\left(x-\mu_2\right)\right\}}\right\}+\ln{\frac{p\left(c_1\right)}{p\left(c_2\right)}}}=\\
+    -\frac{1}{2}\left\{x^T\Sigma^{-1}\left(x-\mu_1\right)-{\mu_1}^T\Sigma^{-1}\left(x-\mu_1\right)-x^T\Sigma^{-1}\left(x-\mu_2\right)+{\mu_2}^T\Sigma^{-1}\left(x-\mu_2\right)\right\}+\ln{\frac{p\left(c_1\right)}{p\left(c_2\right)}}=\\
+    -\frac{1}{2}\left\{x^T\Sigma^{-1}x-x^T\Sigma^{-1}\mu_1-{\mu_1}^T\Sigma^{-1}x+{\mu_1}^T\Sigma^{-1}\mu_1-x^T\Sigma^{-1}x+x^T\Sigma^{-1}\mu_2+{\mu_2}^T\Sigma^{-1}x-{\mu_2}^T\Sigma^{-1}\mu_2\right\}+\ln{\frac{p\left(c_1\right)}{p\left(c_2\right)}}=\\
+    -\frac{1}{2}\left\{-x^T\Sigma^{-1}\left(\mu_1-\mu_2\right)-\left(\mu_1-\mu_2\right)^T\Sigma^{-1}x+{\mu_1}^T\Sigma^{-1}\mu_1-{\mu_2}^T\Sigma^{-1}\mu_2\right\}+\ln{\frac{p\left(c_1\right)}{p\left(c_2\right)}}=\\
+    -\frac{1}{2}\left\{-2\left(\mu_1-\mu_2\right)^T\Sigma^{-1}x+{\mu_1}^T\Sigma^{-1}\mu_1-{\mu_2}^T\Sigma^{-1}\mu_2\right\}+\ln{\frac{p\left(c_1\right)}{p\left(c_2\right)}}=\left(\mu_1-\mu_2\right)^T\Sigma^{-1}x-\frac{1}{2}{\mu_1}^T\Sigma^{-1}\mu_1+\frac{1}{2}{\mu_2}^T\Sigma^{-1}\mu_2+\ln{\frac{p\left(c_1\right)}{p\left(c_2\right)}}=\\
+        \underbrace{
+    	    \left(\Sigma^{-1}\left(\mu_1-\mu_2\right)\right)^T}_{w^T}x
+         \underbrace{-\frac{1}{2}{\mu_1}^T\Sigma^{-1}\mu_1+\frac{1}{2}{\mu_2}^T\Sigma^{-1}\mu_2+\ln{\frac{p\left(c_1\right)}{p\left(c_2\right)}}}_{w_0}=\\
+    w^Tx+w_0
+$
+
 \begin {tcolorbox}
     % Especificaciones
     [enhanced,attach boxed title to top center={yshift=-3mm,yshifttext=-1mm}, colback=blue!5!white,colframe=blue!75!black,colbacktitle=red!80!black, title=4.10,fonttitle=\bfseries, boxed title style={size=small,colframe=red!50!black} ]
