@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.17)  4 AUG 2019 12:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.17)  5 AUG 2019 00:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -821,7 +821,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 43--60
 Here is how much of TeX's memory you used:
  26976 strings out of 492982
  566969 string characters out of 6134896
- 623625 words of memory out of 5000000
+ 623622 words of memory out of 5000000
  30169 multiletter control sequences out of 15000+600000
  540323 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
