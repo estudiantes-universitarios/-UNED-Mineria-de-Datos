@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.17)  5 AUG 2019 00:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.17)  9 AUG 2019 23:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -810,7 +810,7 @@ LaTeX Font Info:    Try loading font information for U+lasy on input line 32.
 (/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-Underfull \hbox (badness 10000) in paragraph at lines 43--60
+Underfull \hbox (badness 10000) in paragraph at lines 52--69
 
  []
 
@@ -819,10 +819,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 43--60
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4]
 (./ejercicios.aux) ) 
 Here is how much of TeX's memory you used:
- 26976 strings out of 492982
- 566969 string characters out of 6134896
- 623622 words of memory out of 5000000
- 30169 multiletter control sequences out of 15000+600000
+ 26979 strings out of 492982
+ 567018 string characters out of 6134896
+ 624625 words of memory out of 5000000
+ 30172 multiletter control sequences out of 15000+600000
  540323 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  63i,13n,101p,10469b,1165s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -840,7 +840,7 @@ cmsy7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/shar
 e/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/
 public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm
 1728.pfb>
-Output written on ejercicios.pdf (4 pages, 167062 bytes).
+Output written on ejercicios.pdf (4 pages, 168959 bytes).
 PDF statistics:
  113 PDF objects out of 1000 (max. 8388607)
  68 compressed objects within 1 object stream
