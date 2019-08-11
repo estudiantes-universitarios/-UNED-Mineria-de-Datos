@@ -16,6 +16,7 @@
     %\usepackage{xparse}
     %\usepackage{tikz,lipsum,lmodern}
     \usepackage[most]{tcolorbox}
+    \usepackage{cancel} %Permite tachar expresiones
     
 \title{Mineria de Datos}
 \author{Estudiante UNED }
@@ -47,11 +48,35 @@ $ \displaystyle
 $ \\
 
 $ \displaystyle
-    E_y\left[ var_{x}\left[ x|y\right]\right] + var_{y}\left[E_x\left[x|y\right]\right]= 
-    \int_{y} \left( \int_{x} \left(x-E_x\left[x|y\right]\right)^{2}\,p\left(x|y \right)dx \right)p\left(y \right)dy + \int_{y} \left(E_y\left[E_x\left[x|y\right]\right] - E_x\left[x|y\right]\right )^{2}p\left(y \right)dy= 
-     \int_{y} \int_{x}\left(x^{2}-2xE_x\left[x|y\right] + E_x\left[x|y\right]^{2}\right)\,p\left(x|y \right)p\left(y \right)dy\,dx  +		\int_{y} \left(E_y\left[E_x\left[x|y\right]\right]^{2} -2E_x\left[x|y\right]E_x\left[x|y\right] +  E_x\left[x|y\right]^{2}\right)p\left(y \right)dy=
-     \int_{y} \int_{x}x^{2}\,p\left(x|y \right)p\left(y \right)dy\,dx -2 \int_{y}\int_{x}xE_x\left[x|y\right]\,p\left(x|y\right)p\left(y \right)dy\,dx  + \int_{y} \int_{x}E_x\left[x|y\right]^{2}\,p\left(x|y \right)p\left(y \right)dy\,dx +
-     \int_{y} E_y\left[E_x\left[x|y\right]\right]^{2} p\left(y \right)dy -2\int_{y} E_x\left[x|y\right]E_x\left[x|y\right]p\left(y \right)dy + \int_{y}  E_x\left[x|y\right]^{2}p\left(y \right)dy
+    E_y\left[ var_{x}\left[ x|y\right]\right] + var_{y}\left[E_x\left[x|y\right]\right]=\\     
+    \int_{y} \left( \int_{x} \left(x-E_x\left[x|y\right]\right)^{2}\,p\left(x|y \right)dx \right)p\left(y \right)dy 
+    + \int_{y} \left(E_y\left[E_x\left[x|y\right]\right] - E_x\left[x|y\right]\right )^{2}p\left(y \right)dy = \\  
+     \int_{y} \int_{x}\left(x^{2}-2xE_x\left[x|y\right] + E\left[x|y\right]^{2}\right)\,p\left(x|y \right)p\left(y \right)dy\,dx 
+      +	\int_{y} \left(E\left[x\right]^{2} -2E\left[x\right]E_x\left[x|y\right] +  E_x\left[x|y\right]^{2}\right)p\left(y \right)dy = \\     
+     \int_{y} \int_{x}x^{2}\,p\left(x|y \right)p\left(y \right)dy\,dx 
+     -2 \int_{y}\int_{x}xE_x\left[x|y\right]\,p\left(x|y\right)p\left(y \right)dy\,dx  
+     + \int_{y} \int_{x}E_x\left[x|y\right]^{2}\,p\left(x|y \right)p\left(y \right)dy\,dx 		 	 + \int_{y}E\left[x\right]^{2} p\left(y \right)dy 
+     -2\int_{y} E\left[x\right]E_x\left[x|y\right]p\left(y \right)dy 
+     + \int_{y}  E_x\left[x|y\right]^{2}p\left(y \right)dy=  \\    
+     \int_{x}x^{2}\left(\int_{y} \,p\left(x,y \right)dy\right)dx 
+     -2 \int_{y}E_x\left[x|y\right] \left(\int_{x}x\,p\left(x|y\right)\,dx\right) p\left(y \right)dy  
+     + \int_{y} E_x\left[x|y\right]^{2}\left(\int_{x}\,p\left(x,y \right)dx\right) dy 
+     + E\left[x\right]^{2} \int_{y} p\left(y \right)dy 
+     -2E\left[x\right] \int_{y} E_x\left[x|y\right]p\left(y \right)dy 
+     + \int_{y}  E_x\left[x|y\right]^{2}p\left(y \right)dy =  \\
+     \int_{x}x^{2}p\left(x\right)dx 
+     -2 \int_{y}E_x\left[x|y\right] E_x\left[x|y\right] p\left(y \right)dy  
+     + \int_{y} E_x\left[x|y\right]^{2}p\left(y \right)dy 
+     + E\left[x\right]^{2} \int_{y} p\left(y \right)dy 
+     -2E\left[x\right] E_y\left[E_x\left[x|y\right]\right] 
+     + \int_{y}  E_x\left[x|y\right]^{2}p\left(y \right)dy = \\
+     E\left[x^{2}\right] 
+     \cancel{-2 \int_{y}E_x\left[x|y\right]^2 p\left(y \right)dy}  
+     + \cancel{\int_{y} E_x\left[x|y\right]^{2}p\left(y \right)dy} 
+     + E\left[x\right]^{2}
+     -2E\left[x\right] E\left[x\right]
+     + \cancel{\int_{y}  E_x\left[x|y\right]^{2}p\left(y \right)dy} = \\
+     E\left[x^{2}\right] - E\left[x\right]^{2}
 $ \\
 
 \begin {tcolorbox}
