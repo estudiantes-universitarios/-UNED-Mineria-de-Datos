@@ -33,42 +33,55 @@
 \maketitle
 
 \begin {tcolorbox}
-    % Especificaciones
-    [enhanced,attach boxed title to top center={yshift=-3mm,yshifttext=-1mm}, colback=blue!5!white,colframe=blue!75!black,colbacktitle=red!80!black, title=2.8,fonttitle=\bfseries, boxed title style={size=small,colframe=red!50!black} ]
+	% Especificaciones	
+	[enhanced,attach boxed title to top left={yshift=-3mm,yshifttext=-1mm}, colback=yellow!10!white,colframe=red!60!black,colbacktitle=orange!80!black, title=Ejercicio 1,fonttitle=\bfseries, boxed title style={size=small,colframe=red!50!black} ]
+	% Cuerpo caja
+	Considere dos variables $x$ e $y$ con distribuci\'on de probabilidad conjunta $p\left(x,y\right)$. Demuestre que:
+	\begin{itemize}
+    	\item $E\left[x\right]=E_y\left[E_x\left[x|y\right]\right]$
+    	\item $var\left[x\right]=E_y\left[ var_{x}\left[ x|y\right]\right] + var_{y}\left[E_x\left[x|y\right]\right]$
+	\end{itemize}
+    	donde $E_x\left[x|y\right]$ representa el valor esperado de $x$ asumiendo la distribuci\'on de probabilidad condicionada $p\left(x|y\right)$, y una notaci\'on equivalente se utiliza para la varianza condicional.
+	
+	\begin {tcolorbox}
+    	% Especificaciones
+    	[enhanced,attach boxed title to top center={yshift=-3mm,yshifttext=-1mm}, colback=blue!5!white,colframe=blue!75!black,colbacktitle=red!80!black, title=2.8,fonttitle=\bfseries, boxed title style={size=small,colframe=red!50!black} ]
   
-  % Cuerpo caja
+  	% Cuerpo caja
+	\end{tcolorbox}
 \end{tcolorbox}
 $ \displaystyle
-    E_y\left[E_x\left[x|y\right]\right]=  
+    \mathbf{E_y\left[E_x\left[x|y\right]\right]}=  
     \int_{y} \left( \int_{x}x\,p\left(x|y \right)dx \right)p\left(y \right)dy= 
     \int_{y} \int_{x}x\,p\left(x|y \right)p\left(y \right)dy\,dx =
     \int_{y} \int_{x}x\,p\left(x,y \right)dy\,dx =
     \int_{x} x \left(\int_{y}\,p\left(x,y \right)dy\right)dx =
-    \int_{x} p\left(x\right)dx = E\left[x\right]
+    \int_{x} p\left(x\right)dx = \mathbf{E\left[x\right]}
 $ \\
 
 $ \displaystyle
-    E_y\left[ var_{x}\left[ x|y\right]\right] + var_{y}\left[E_x\left[x|y\right]\right]=\\     
+    \mathbf{E_y\left[ var_{x}\left[ x|y\right]\right] + var_{y}\left[E_x\left[x|y\right]\right]}=\\     
     \int_{y} \left( \int_{x} \left(x-E_x\left[x|y\right]\right)^{2}\,p\left(x|y \right)dx \right)p\left(y \right)dy 
-    + \int_{y} \left(E_y\left[E_x\left[x|y\right]\right] - E_x\left[x|y\right]\right )^{2}p\left(y \right)dy = \\  
+    + \int_{y} \left(\underbrace{E_y\left[E_x\left[x|y\right]\right]}_{E\left[x\right]} - E_x\left[x|y\right]\right )^{2}p\left(y \right)dy = \\  
      \int_{y} \int_{x}\left(x^{2}-2xE_x\left[x|y\right] + E\left[x|y\right]^{2}\right)\,p\left(x|y \right)p\left(y \right)dy\,dx 
       +	\int_{y} \left(E\left[x\right]^{2} -2E\left[x\right]E_x\left[x|y\right] +  E_x\left[x|y\right]^{2}\right)p\left(y \right)dy = \\     
-     \int_{y} \int_{x}x^{2}\,p\left(x|y \right)p\left(y \right)dy\,dx 
+     \int_{y} \int_{x}x^{2}\,\underbrace{p\left(x|y \right)p\left(y \right)}_{p\left(x,y \right)= p\left(x|y \right)p\left(y \right)} dy\,dx 
      -2 \int_{y}\int_{x}xE_x\left[x|y\right]\,p\left(x|y\right)p\left(y \right)dy\,dx  
-     + \int_{y} \int_{x}E_x\left[x|y\right]^{2}\,p\left(x|y \right)p\left(y \right)dy\,dx 		 	 + \int_{y}E\left[x\right]^{2} p\left(y \right)dy 
+     + \int_{y} \int_{x}E_x\left[x|y\right]^{2}\,\underbrace{p\left(x|y \right)p\left(y \right)}_{p\left(x,y \right)= p\left(x|y \right)p\left(y \right)}dy\,dx
+     + \int_{y}E\left[x\right]^{2} p\left(y \right)dy 
      -2\int_{y} E\left[x\right]E_x\left[x|y\right]p\left(y \right)dy 
      + \int_{y}  E_x\left[x|y\right]^{2}p\left(y \right)dy=  \\    
-     \int_{x}x^{2}\left(\int_{y} \,p\left(x,y \right)dy\right)dx 
-     -2 \int_{y}E_x\left[x|y\right] \left(\int_{x}x\,p\left(x|y\right)\,dx\right) p\left(y \right)dy  
-     + \int_{y} E_x\left[x|y\right]^{2}\left(\int_{x}\,p\left(x,y \right)dx\right) dy 
+     \int_{x}x^{2}\underbrace{\left(\int_{y} \,p\left(x,y \right)dy\right)}_{p\left(x\right)}dx 
+     -2 \int_{y}E_x\left[x|y\right] \underbrace{\left(\int_{x}x\,p\left(x|y\right)\,dx\right)}_{E_x\left[x|y\right]} p\left(y \right)dy  
+     + \int_{y} E_x\left[x|y\right]^{2}\underbrace{\left(\int_{x}\,p\left(x,y \right)dx\right)}_{p\left(y\right)} dy 
      + E\left[x\right]^{2} \int_{y} p\left(y \right)dy 
-     -2E\left[x\right] \int_{y} E_x\left[x|y\right]p\left(y \right)dy 
+     -2E\left[x\right] \underbrace{\int_{y} E_x\left[x|y\right]p\left(y \right)dy}_{E_y\left[E_x\left[x|y\right]\right]} 
      + \int_{y}  E_x\left[x|y\right]^{2}p\left(y \right)dy =  \\
      \int_{x}x^{2}p\left(x\right)dx 
      -2 \int_{y}E_x\left[x|y\right] E_x\left[x|y\right] p\left(y \right)dy  
      + \int_{y} E_x\left[x|y\right]^{2}p\left(y \right)dy 
      + E\left[x\right]^{2} \int_{y} p\left(y \right)dy 
-     -2E\left[x\right] E_y\left[E_x\left[x|y\right]\right] 
+     -2E\left[x\right] \underbrace{E_y\left[E_x\left[x|y\right]\right]}_{E\left[x\right]} 
      + \int_{y}  E_x\left[x|y\right]^{2}p\left(y \right)dy = \\
      E\left[x^{2}\right] 
      \cancel{-2 \int_{y}E_x\left[x|y\right]^2 p\left(y \right)dy}  
@@ -76,15 +89,21 @@ $ \displaystyle
      + E\left[x\right]^{2}
      -2E\left[x\right] E\left[x\right]
      + \cancel{\int_{y}  E_x\left[x|y\right]^{2}p\left(y \right)dy} = \\
-     E\left[x^{2}\right] - E\left[x\right]^{2}
+     E\left[x^{2}\right] - E\left[x\right]^{2}= \mathbf{var\left[x\right]}
 $ \\
 
 \begin {tcolorbox}
-    % Especificaciones
+	% Especificaciones	
+	[enhanced,attach boxed title to top left={yshift=-3mm,yshifttext=-1mm}, colback=yellow!10!white,colframe=red!60!black,colbacktitle=orange!80!black, title=Ejercicio 1,fonttitle=\bfseries, boxed title style={size=small,colframe=red!50!black} ]
+	
+	% Cuerpo caja
+	\begin {tcolorbox}
+    	% Especificaciones
     [enhanced,attach boxed title to top center={yshift=-3mm,yshifttext=-1mm}, colback=blue!5!white,colframe=blue!75!black,colbacktitle=red!80!black, title=4.8,fonttitle=\bfseries, boxed title style={size=small,colframe=red!50!black} ]
   
   % Cuerpo caja
 Using (4.57) and (4.58), derive the result (4.65) for the posterior class probability in the two-class generative model with Gaussian densities, and verify the results (4.66) and (4.67) for the parameters w and w0.
+	\end{tcolorbox}
 \end{tcolorbox}
 
 $ \displaystyle
