@@ -9,7 +9,7 @@
         % Sangría=0mm
     \parindent = 0mm
         % Otros paquetes
-    \usepackage{amsmath,amssymb,amsfonts,latexsym}
+    \usepackage{amsmath,amssymb,amsfonts,latexsym, nicefrac}
     \usepackage[T1]{fontenc}        % fuentes adecuadas para salida
     \usepackage[latin1]{inputenc}   % acentos,etc., desde el teclado
             % Paquetes para estilos
@@ -32,6 +32,83 @@
 
 \maketitle
 
+% ================ Ejercicio 1.30 ================
+\begin {tcolorbox}
+	% Especificaciones	
+	[enhanced,attach boxed title to top left={yshift=-3mm,yshifttext=-1mm}, colback=yellow!10!white,colframe=red!60!black,colbacktitle=orange!80!black, title=Ejercicio 1,fonttitle=\bfseries, boxed title style={size=small,colframe=red!50!black} ]
+	% Cuerpo caja
+Calcule la divergencia de Kullback-Leibler entre dos gaussianas $p\left(x\right)=\mathcal{N}\left(x|\mu,\Sigma\right)$ y $q\left(x\right)=\mathcal{N}\left(x|m,L\right)$
+	
+	\begin {tcolorbox}
+    	% Especificaciones
+    	[enhanced,attach boxed title to top center={yshift=-3mm,yshifttext=-1mm}, colback=blue!5!white,colframe=blue!75!black,colbacktitle=red!80!black, title=1.30,fonttitle=\bfseries, boxed title style={size=small,colframe=red!50!black} ]
+  		% Cuerpo caja
+  		Evaluate the Kullback-Leibler divergence (1.113) between two Gaussians $p\left(x\right)=\mathcal{N}\left(x|\mu,\Sigma\right)$ and $q\left(x\right)=\mathcal{N}\left(x|m,L\right)$
+	\end{tcolorbox}
+\end{tcolorbox}
+$\displaystyle
+    KL\left(p||q\right)=-\int{p\left(x\right)\ln{\frac{q\left(x\right)}{p\left(x\right)}}}dx \\
+$
+$\displaystyle
+    \ln{\frac{p\left(x\right)}{q\left(x\right)}}=
+    \ln{\frac{\mathcal{N}\left(x|m,L\right)}{\mathcal{N}\left(x|\mu,\Sigma\right)}}=
+    \ln{\left\{\frac{\frac{1}{\left(2\pi\right)^{\nicefrac{D}{2}}}\ \frac{1}{\left|L\right|^{\nicefrac{1}{2}}}\ \exp{\left\{-\frac{1}{2}\left(x-m\right)^T L^{-1}\left(x-m\right)\right\}}}{\frac{1}{\left(2\pi\right)^{\nicefrac{D}{2}}}\ \frac{1}{\left|\Sigma\right|^{\nicefrac{1}{2}}}\exp{\left\{-\frac{1}{2}\left(x-\mu\right)^T\Sigma^{-1}\left(x-\mu\right)\right\}}}\right\}}=\\
+    %
+    \ln{\left\{\left(\frac{\left|\Sigma\right|}{\left|L\right|}\right)^\frac{1}{2}\exp{\left\{\frac{1}{2}\left(x-\mu\right)^T\Sigma^{-1}\left(x-\mu\right)-\frac{1}{2}\left(x-m\right)^TL^{-1}\left(x-m\right)\right\}}\right\}}=\\
+    \frac{1}{2}\ln{\left(\frac{\left|\Sigma\right|}{\left|L\right|}\right)}+\frac{1}{2}\left(x-\mu\right)^T\Sigma^{-1}\left(x-\mu\right)-\frac{1}{2}\left(x-m\right)^TL^{-1}\left(x-m\right)=\\
+    -\frac{1}{2}\left\{
+            \ln{\left(\frac{\left|\Sigma\right|}{\left|L\right|}\right)}
+            +x^T\Sigma^{-1}\left(x-\mu\right)
+            -\mu^T\Sigma^{-1}\left(x-\mu\right)
+            -x^T L^{-1}\left(x-m\right)
+            +m^T L^{-1}\left(x-m\right)\right\}=\\
+    -\frac{1}{2}\left\{
+            \ln{\left(\frac{\left|\Sigma\right|}{\left|L\right|}\right)}
+            +x^T\Sigma^{-1}x\underbrace{-x^T\Sigma^{-1}\mu-\mu^T\Sigma^{-1}x}_{x^T\Sigma^{-1}\mu\equiv\mu^T\Sigma^{-1}x}
+            +\mu^T\Sigma^{-1}\mu-x^T L^{-1}x\underbrace{+x^T L^{-1}m+m^T L^{-1}x}_{x^T L^{-1}m\equiv m^T L^{-1}x}
+            -m^T L^{-1}m\right\}=\\
+    -\frac{1}{2}\left\{
+            \ln{\left(\frac{\left|\Sigma\right|}{\left|L\right|}\right)}
+            +x^T\left(\Sigma^{-1}-L^{-1}\right)x
+            -2\mu^T\Sigma^{-1}x
+            +\mu^T\Sigma^{-1}\mu
+            +2m^TL^{-1}x
+            -m^TL^{-1}m\right\}=\\
+    -\frac{1}{2}\left\{
+            \ln{\left(\frac{\left|\Sigma\right|}{\left|L\right|}\right)}
+            +x^T\left(\Sigma^{-1}+L^{-1}\right)x
+            -2\left(\mu^T\Sigma^{-1}
+            -m^TL^{-1}\right)x
+            +\mu^T\Sigma^{-1}\mu
+            -m^TL^{-1}m\right\}
+$\\
+$\displaystyle
+KL\left(p||q\right)=-\int{p\left(x\right)\ln{\frac{q\left(x\right)}{p\left(x\right)}}}dx=\\
+-\int{\mathcal{N}\left(x|\mu,\Sigma\right)\ln{\frac{\mathcal{N}\left(x|m,L\right)}{\mathcal{N}\left(x|\mu,\Sigma\right)}}}dx= -\int\mathcal{N}\left(x|\mu,\Sigma\right)dx\left(-\frac{1}{2}\right)\left\{\ln{\left(\frac{\left|\Sigma\right|}{\left|L\right|}\right)}+x^T\left(\Sigma^{-1}+L^{-1}\right)x-2\left(\mu^T\Sigma^{-1}-m^TL^{-1}\right)x+\mu^T\Sigma^{-1}\mu-m^TL^{-1}m\right\}=\\
+%
+\frac{1}{2}\left\{
+        \underbrace{\int{\ln{\left(\frac{\left|\Sigma\right|}{\left|L\right|}\right)}\mathcal{N}\left(x|\mu,\Sigma\right)dx}}_{\int\mathcal{N}\left(x|\mu,\Sigma\right)dx=1}
+        +\int{x^T\left(\Sigma^{-1}+L^{-1}\right)x\mathcal{N}\left(x|\mu,\Sigma\right)dx}
+        +\int{-2\left(\mu^T\Sigma^{-1}-m^T L^{-1}\right)x\mathcal{N}\left(x|\mu,\Sigma\right)dx}
+        +\underbrace{\int\left(\mu^T\Sigma^{-1}\mu-m^TL^{-1}m\right)\mathcal{N}\left(x|\mu,\Sigma\right)dx}_{\int\mathcal{N}\left(x|\mu,\Sigma\right)dx=1}\right\}=\\
+%
+\frac{1}{2}\left\{
+        \ln{\left(\frac{\left|\Sigma\right|}{\left|L\right|}\right)}
+        +\int{x^T\left(\Sigma^{-1}+L^{-1}\right)x\mathcal{N}\left(x|\mu,\Sigma\right)dx}
+        -2\left(\mu^T\Sigma^{-1}-m^T L^{-1}\right)\underbrace{\int x\mathcal{N}\left(x|\mu,\Sigma\right)dx}_\mu
+        +\left(\mu^T\Sigma^{-1}\mu-m^T L^{-1}m\right)\right\}=\\
+%
+\frac{1}{2}\left\{
+        \ln{\left(\frac{\left|\Sigma\right|}{\left|L\right|}\right)}
+        +\int{x^T\left(\Sigma^{-1}+L^{-1}\right)x\mathcal{N}\left(x|\mu,\Sigma\right)dx}
+        -2\left(\mu^T\Sigma^{-1}-m^T L^{-1}\right)\mu
+        +\left(\mu^T\Sigma^{-1}\mu-m^T L^{-1}m\right)\right\}=\\
+%
+\frac{1}{2}\left\{\ln{\left(\frac{\left|\Sigma\right|}{\left|L\right|}\right)}+\int{x^T\left(\Sigma^{-1}+L^{-1}\right)x\mathcal{N}\left(x|\mu,\Sigma\right)dx}+\left(2m^T L^{-1}\mu-\mu^T\Sigma^{-1}\mu-m^TL^{-1}m\right)\right\}
+$
+\\
+
+% ================ Ejercicio 2.8 ================
 \begin {tcolorbox}
 	% Especificaciones	
 	[enhanced,attach boxed title to top left={yshift=-3mm,yshifttext=-1mm}, colback=yellow!10!white,colframe=red!60!black,colbacktitle=orange!80!black, title=Ejercicio 1,fonttitle=\bfseries, boxed title style={size=small,colframe=red!50!black} ]
@@ -46,8 +123,13 @@
 	\begin {tcolorbox}
     	% Especificaciones
     	[enhanced,attach boxed title to top center={yshift=-3mm,yshifttext=-1mm}, colback=blue!5!white,colframe=blue!75!black,colbacktitle=red!80!black, title=2.8,fonttitle=\bfseries, boxed title style={size=small,colframe=red!50!black} ]
-  
-  	% Cuerpo caja
+    	% Cuerpo caja
+    	Consider two variables x and y with joint distribution p(x, y). Prove the following two results
+    \begin{itemize}
+    	\item $E\left[x\right]=E_y\left[E_x\left[x|y\right]\right]$
+    	\item $var\left[x\right]=E_y\left[ var_{x}\left[ x|y\right]\right] + var_{y}\left[E_x\left[x|y\right]\right]$
+	\end{itemize}
+    	Here $E_x\left[x|y\right]$ denotes the expectation of $x$ under the conditional distribution $p\left(x|y\right)$, with a similar notation for the conditional variance.
 	\end{tcolorbox}
 \end{tcolorbox}
 $ \displaystyle
@@ -91,12 +173,25 @@ $ \displaystyle
      + \cancel{\int_{y}  E_x\left[x|y\right]^{2}p\left(y \right)dy} = \\
      E\left[x^{2}\right] - E\left[x\right]^{2}= \mathbf{var\left[x\right]}
 $ \\
-
+\\
+% ================ Ejercicio 4.8 ================
 \begin {tcolorbox}
 	% Especificaciones	
 	[enhanced,attach boxed title to top left={yshift=-3mm,yshifttext=-1mm}, colback=yellow!10!white,colframe=red!60!black,colbacktitle=orange!80!black, title=Ejercicio 1,fonttitle=\bfseries, boxed title style={size=small,colframe=red!50!black} ]
 	
 	% Cuerpo caja
+	Sabiendo que en un problema de clasificaci\'on con dos clases 
+	$$ \displaystyle
+    	p\left(C_1|x\right)=\frac{1}{1+\exp{\left(-\ln\frac{p\left(x|c_1\right)p\left(c_1\right)}{p\left(x|c_2\right)p\left(c_2\right)}\right)}}=\frac{1}{1+\exp{\left(-a\right)}}=\sigma\left(a\right)
+	$$
+	y suponiendo un modelo generativo en el que las verosimilitudes (likelihoods) de las dos clases vienen dadas por dos gaussianas de medias ${\mu}_1$ y ${\mu}_2$ , pero la misma varianza $\Sigma$ , demuestre que
+	$$\displaystyle
+		p\left(c_1|x\right)=\sigma\left(w^Tx+w_0\right)
+	$$
+	con $ \displaystyle w=\Sigma^{-1}\left(\mu_1-\mu_2\right)$
+	$$\displaystyle
+		w_0=-\frac{1}{2}\mu_1^T \Sigma^{-1}\mu_1+\frac{1}{2}\mu_2^T \Sigma^{-1}\mu_2+\ln{\frac{c_1}{c_2}}
+	$$
 	\begin {tcolorbox}
     	% Especificaciones
     [enhanced,attach boxed title to top center={yshift=-3mm,yshifttext=-1mm}, colback=blue!5!white,colframe=blue!75!black,colbacktitle=red!80!black, title=4.8,fonttitle=\bfseries, boxed title style={size=small,colframe=red!50!black} ]
@@ -148,13 +243,28 @@ $\displaystyle
     	    \left(\Sigma^{-1}\left(\mu_1-\mu_2\right)\right)^T}_{w^T}x
          \underbrace{-\frac{1}{2}{\mu_1}^T\Sigma^{-1}\mu_1+\frac{1}{2}{\mu_2}^T\Sigma^{-1}\mu_2+\ln{\frac{p\left(c_1\right)}{p\left(c_2\right)}}}_{w_0}=\\
     w^Tx+w_0
-$
+$\\
 
+%% ================ Ejercicio 4.10 ================
 \begin {tcolorbox}
-    % Especificaciones
+	% Especificaciones	
+	[enhanced,attach boxed title to top left={yshift=-3mm,yshifttext=-1mm}, colback=yellow!10!white,colframe=red!60!black,colbacktitle=orange!80!black, title=Ejercicio 1,fonttitle=\bfseries, boxed title style={size=small,colframe=red!50!black} ]
+	% Cuerpo caja
+	Considere un modelo generativo de clasificaci\' on de $K$ clases definido por $K$ probabilidades a priori $p\left(C_k\right)=\pi_k $ y densidades de probabilidad del vector de caracter\' isticas de entrada $\Phi$ condicionadas a la clase $p\left(\Phi|C_k\right) $ dadas por distribuciones normales multi-variantes con la misma covarianza:
+	$$ p\left(\phi_n|C_k\right)=\mathcal{N}\left(\phi_n|\mu,\Sigma\right) $$
+	Suponga que se nos proporciona un conjunto de entrenamiento $\Phi_m , t_n$ donde el sub\' indice $n$ tomca valores $n=1,...,N$ y $t_n$ es un vector binario de longitud $K$ que utiliza la codificaci\' on  uno-de-$K$ (es decir, que sus componentes son $t_{n,j}=I_{j,k}$ si el patr\' on $t_n$ pertenece a la clase $C_k$). Si asumimos que el conjunto de entrenamiento constituye una muestra independiente de datos de este modelo, entonces el estimador m\' aximo-veros\' imil de las probabilidades a priori viene dado por
+	$$\pi_k = \frac{N_k}{N}$$
+	donde $N_k$ es el n\' umero de patrones asignados ala clase $C_k$. \\ Demuestre que el estimador m\' aximo-vers\' imil de la media de la distribuci\' pn de la clase $C_k$ viene dado por
+	$$ \mu_k\ =\frac{1}{N_k}\ \sum_{n=1}^{N}{\ t_{n,k}\phi_n} $$
+	y de la matriz de covarianza, viene dado por
+	$$ \Sigma=\sum_{k=1}^{K}{\frac{N_k}{N}\ S_k} $$
+	con
+	$$ S_k=\frac{1}{N_k}\sum_{n=1}^{N}{\ t_{n,k}\left(\phi_n-\mu_k\right)\left(\phi_n-\mu_k\right)^T} $$
+	\begin {tcolorbox}
+   		 % Especificaciones
     [enhanced,attach boxed title to top center={yshift=-3mm,yshifttext=-1mm}, colback=blue!5!white,colframe=blue!75!black,colbacktitle=red!80!black, title=4.10,fonttitle=\bfseries, boxed title style={size=small,colframe=red!50!black} ]
   
-  % Cuerpo caja
+  		% Cuerpo caja
 Consider the classification model of Exercise 4.9 and now suppose that the class-conditional densities are given by Gaussian distributions with a shared covariance matrix, so that 
         $$ p\left(\phi_n|C_k\right)=\mathcal{N}\left(\phi_n|\mu,\Sigma\right) $$
 Show that the maximum likelihood solution for the mean of the Gaussian distribution for class Ck is given by
@@ -164,6 +274,7 @@ which represents the mean of those feature vectors assigned to class Ck. Similar
 where
         $$ S_k=\frac{1}{N_k}\sum_{n=1}^{N}{\ t_{n,k}\left(\phi_n-\mu_k\right)\left(\phi_n-\mu_k\right)^T} $$
 Thus $\Sigma$ is given by a weighted average of the covariances of the data associated with each class, in which the weighting coefficients are given by the prior probabilities of the classes.
+	\end{tcolorbox}
 \end{tcolorbox}
 
 $ \displaystyle
